@@ -15,6 +15,9 @@
 		DB4993A6243DCF870074C68B /* Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4993A5243DCF870074C68B /* Binder.swift */; };
 		DB4993A8243DD2200074C68B /* SafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4993A7243DD2200074C68B /* SafeArray.swift */; };
 		DB4993AA243DD4CA0074C68B /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4993A9243DD4CA0074C68B /* Observer.swift */; };
+		DB4993AE243DD7FB0074C68B /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4993AD243DD7FB0074C68B /* Comic.swift */; };
+		DB4993B0243DE46F0074C68B /* ComicItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4993AF243DE46F0074C68B /* ComicItemCell.swift */; };
+		DB4993B2243DE4B40074C68B /* ComicItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4993B1243DE4B40074C68B /* ComicItemViewModel.swift */; };
 		DB4D0BA0243CF4B700E68882 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D0B9F243CF4B700E68882 /* AppDelegate.swift */; };
 		DB4D0BA2243CF4B700E68882 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D0BA1243CF4B700E68882 /* SceneDelegate.swift */; };
 		DB4D0BA4243CF4B700E68882 /* ComicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D0BA3243CF4B700E68882 /* ComicListViewController.swift */; };
@@ -57,6 +60,9 @@
 		DB4993A5243DCF870074C68B /* Binder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binder.swift; sourceTree = "<group>"; };
 		DB4993A7243DD2200074C68B /* SafeArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeArray.swift; sourceTree = "<group>"; };
 		DB4993A9243DD4CA0074C68B /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		DB4993AD243DD7FB0074C68B /* Comic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comic.swift; sourceTree = "<group>"; };
+		DB4993AF243DE46F0074C68B /* ComicItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicItemCell.swift; sourceTree = "<group>"; };
+		DB4993B1243DE4B40074C68B /* ComicItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicItemViewModel.swift; sourceTree = "<group>"; };
 		DB4D0B9C243CF4B700E68882 /* MarvelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB4D0B9F243CF4B700E68882 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB4D0BA1243CF4B700E68882 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +122,8 @@
 		DB4993AB243DD5610074C68B /* ComicItem */ = {
 			isa = PBXGroup;
 			children = (
+				DB4993B1243DE4B40074C68B /* ComicItemViewModel.swift */,
+				DB4993AF243DE46F0074C68B /* ComicItemCell.swift */,
 			);
 			path = ComicItem;
 			sourceTree = "<group>";
@@ -185,9 +193,9 @@
 		DB4D0BD0243CF76900E68882 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				DBD30F3D243D06DD00725BBF /* Extensions */,
 				DB4D0BD1243CF77600E68882 /* Coordinator.swift */,
 				DB4D0BD3243CF9E900E68882 /* RootCoordinator.swift */,
+				DBD30F3D243D06DD00725BBF /* Extensions */,
 				DB4993A5243DCF870074C68B /* Binder.swift */,
 				DB4993A9243DD4CA0074C68B /* Observer.swift */,
 				DB4993A7243DD2200074C68B /* SafeArray.swift */,
@@ -198,6 +206,7 @@
 		DB4D0BD5243CFEE200E68882 /* ComicList */ = {
 			isa = PBXGroup;
 			children = (
+				DB4993AD243DD7FB0074C68B /* Comic.swift */,
 				DB4D0BD6243CFF0300E68882 /* ComicListCoordinator.swift */,
 				DB4D0BD8243CFF1000E68882 /* ComicListViewModel.swift */,
 				DB4D0BA3243CF4B700E68882 /* ComicListViewController.swift */,
@@ -357,12 +366,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB4D0BD7243CFF0300E68882 /* ComicListCoordinator.swift in Sources */,
+				DB4993B2243DE4B40074C68B /* ComicItemViewModel.swift in Sources */,
 				DB4D0BD9243CFF1000E68882 /* ComicListViewModel.swift in Sources */,
 				DB4D0BD2243CF77600E68882 /* Coordinator.swift in Sources */,
 				DB49939F243D23D30074C68B /* String+MD5.swift in Sources */,
 				DB4D0BA4243CF4B700E68882 /* ComicListViewController.swift in Sources */,
 				DBD30F41243D077700725BBF /* UICollectionView+.swift in Sources */,
+				DB4993B0243DE46F0074C68B /* ComicItemCell.swift in Sources */,
 				DB4993AA243DD4CA0074C68B /* Observer.swift in Sources */,
+				DB4993AE243DD7FB0074C68B /* Comic.swift in Sources */,
 				DB4D0BDC243D024700E68882 /* NetworkManager.swift in Sources */,
 				DB4D0BD4243CF9E900E68882 /* RootCoordinator.swift in Sources */,
 				DB4993A8243DD2200074C68B /* SafeArray.swift in Sources */,

@@ -31,14 +31,14 @@ extension Bindable {
 final class Binder<Observed>: Bindable {
   typealias T = Observed
   
-  var _value: Observed {
-    didSet { observers.array.forEach { $0.callback(_value) } }
+  var value: Observed {
+    didSet { observers.array.forEach { $0.callback(value) } }
   }
   
   private var observers = SafeArray(array: [Observer<Observed>]())
   
   init(_ value: Observed) {
-    self._value = value
+    self.value = value
   }
   
   func bind(
@@ -64,7 +64,7 @@ final class Binder<Observed>: Bindable {
     observers.array.append(observer)
     
     if fire {
-      callback(_value)
+      callback(value)
     }
     
     return observer
@@ -77,6 +77,8 @@ final class Binder<Observed>: Bindable {
 
 final class ImmutableBinder<Observed>: Bindable {
   typealias T = Observed
+  
+  var value: Observed { binder.value }
   
   private let binder: Binder<Observed>
   

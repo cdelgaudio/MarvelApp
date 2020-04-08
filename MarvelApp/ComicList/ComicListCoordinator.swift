@@ -11,8 +11,12 @@ import Foundation
 final class ComicListCoordinator: Coordinator {
   
   override func start() {
-    let viewModel = ComicListViewModel(network: NetworkManager())
-    let viewController = ComicListViewController(viewModel: viewModel)
+    let state: Binder<ComicListViewModel.State>  = Binder(.failed(message: ""))
+    let viewModel = ComicListViewModel(network: NetworkManager(), state: state)
+    let viewController = ComicListViewController(
+      viewModel: viewModel,
+      state: ImmutableBinder(binder: state)
+    )
     navigation.pushViewController(viewController, animated: false)
   }
 }
