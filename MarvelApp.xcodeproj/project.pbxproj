@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB008871243E57B200F2F9CB /* MockCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB008870243E57B200F2F9CB /* MockCache.swift */; };
+		DB008873243E71CD00F2F9CB /* LoadinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB008872243E71CD00F2F9CB /* LoadinImageView.swift */; };
 		DB49939B243D12E70074C68B /* ComicListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB499399243D12D90074C68B /* ComicListTests.swift */; };
 		DB49939D243D18750074C68B /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB49939C243D18750074C68B /* NetworkRequest.swift */; };
 		DB49939F243D23D30074C68B /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB49939E243D23D30074C68B /* String+MD5.swift */; };
@@ -24,6 +26,7 @@
 		DB4993BC243E20990074C68B /* MockNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4993BB243E20990074C68B /* MockNetworking.swift */; };
 		DB4993BE243E292E0074C68B /* ComicItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4993BD243E292E0074C68B /* ComicItemTests.swift */; };
 		DB4993C0243E2C7F0074C68B /* ComicDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4993BF243E2C7F0074C68B /* ComicDetailTests.swift */; };
+		DB4993C2243E383B0074C68B /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4993C1243E383B0074C68B /* CacheManager.swift */; };
 		DB4D0BA0243CF4B700E68882 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D0B9F243CF4B700E68882 /* AppDelegate.swift */; };
 		DB4D0BA2243CF4B700E68882 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D0BA1243CF4B700E68882 /* SceneDelegate.swift */; };
 		DB4D0BA4243CF4B700E68882 /* ComicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D0BA3243CF4B700E68882 /* ComicListViewController.swift */; };
@@ -57,6 +60,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB008870243E57B200F2F9CB /* MockCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCache.swift; sourceTree = "<group>"; };
+		DB008872243E71CD00F2F9CB /* LoadinImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadinImageView.swift; sourceTree = "<group>"; };
 		DB499399243D12D90074C68B /* ComicListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicListTests.swift; sourceTree = "<group>"; };
 		DB49939C243D18750074C68B /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		DB49939E243D23D30074C68B /* String+MD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
@@ -74,6 +79,7 @@
 		DB4993BB243E20990074C68B /* MockNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworking.swift; sourceTree = "<group>"; };
 		DB4993BD243E292E0074C68B /* ComicItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicItemTests.swift; sourceTree = "<group>"; };
 		DB4993BF243E2C7F0074C68B /* ComicDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicDetailTests.swift; sourceTree = "<group>"; };
+		DB4993C1243E383B0074C68B /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		DB4D0B9C243CF4B700E68882 /* MarvelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB4D0B9F243CF4B700E68882 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB4D0BA1243CF4B700E68882 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +126,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB00886E243E579800F2F9CB /* Caching */ = {
+			isa = PBXGroup;
+			children = (
+				DB00886F243E57A300F2F9CB /* Mock */,
+				DB4993C1243E383B0074C68B /* CacheManager.swift */,
+			);
+			path = Caching;
+			sourceTree = "<group>";
+		};
+		DB00886F243E57A300F2F9CB /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				DB008870243E57B200F2F9CB /* MockCache.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		DB008874243E736900F2F9CB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DB008872243E71CD00F2F9CB /* LoadinImageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		DB4993A4243D2E340074C68B /* Responses */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +210,7 @@
 		DB4D0B9E243CF4B700E68882 /* MarvelApp */ = {
 			isa = PBXGroup;
 			children = (
+				DB00886E243E579800F2F9CB /* Caching */,
 				DB4D0BDA243D022400E68882 /* Networking */,
 				DB4D0BD0243CF76900E68882 /* Core */,
 				DB4D0BCF243CF56800E68882 /* Resources */,
@@ -223,6 +255,7 @@
 		DB4D0BD0243CF76900E68882 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				DB008874243E736900F2F9CB /* Views */,
 				DBD30F3D243D06DD00725BBF /* Extensions */,
 				DB4D0BD1243CF77600E68882 /* Coordinator.swift */,
 				DB4D0BD3243CF9E900E68882 /* RootCoordinator.swift */,
@@ -411,12 +444,15 @@
 				DB4993AE243DD7FB0074C68B /* Comic.swift in Sources */,
 				DB4D0BDC243D024700E68882 /* NetworkManager.swift in Sources */,
 				DB4993B9243E003E0074C68B /* ComicDetailViewController.swift in Sources */,
+				DB008873243E71CD00F2F9CB /* LoadinImageView.swift in Sources */,
 				DB4D0BD4243CF9E900E68882 /* RootCoordinator.swift in Sources */,
 				DB4993A8243DD2200074C68B /* SafeArray.swift in Sources */,
 				DBD30F3F243D06ED00725BBF /* UIView+.swift in Sources */,
 				DB4993A1243D285E0074C68B /* ComicListResponse.swift in Sources */,
 				DB49939D243D18750074C68B /* NetworkRequest.swift in Sources */,
+				DB008871243E57B200F2F9CB /* MockCache.swift in Sources */,
 				DB4D0BA0243CF4B700E68882 /* AppDelegate.swift in Sources */,
+				DB4993C2243E383B0074C68B /* CacheManager.swift in Sources */,
 				DB4D0BA2243CF4B700E68882 /* SceneDelegate.swift in Sources */,
 				DB4993A6243DCF870074C68B /* Binder.swift in Sources */,
 				DB4993A3243D2E2C0074C68B /* ErrorResponse.swift in Sources */,

@@ -16,11 +16,10 @@ class ComicDetailViewController: UIViewController {
   
   private var disposeBag: [Disposable] = []
   
-  private let imageView: UIImageView = {
-    let imageView = UIImageView()
-    imageView.contentMode = .scaleAspectFit
-    imageView.autoPinDimensions(CGSize(width: 300, height: 300))
-    return imageView
+  private let loadingImageView: LoadingImageView = {
+    let view = LoadingImageView(frame: .zero)
+    view.autoPinDimensions(CGSize(width: 300, height: 300))
+    return view
   }()
   
   private lazy var titleLabel: UILabel = {
@@ -61,7 +60,7 @@ class ComicDetailViewController: UIViewController {
     view.backgroundColor = .white
     let stack = UIStackView(arrangedSubviews: [
       titleLabel,
-      imageView,
+      loadingImageView,
       descriptionTextView,
       .flexibleSpacer()
     ])
@@ -77,11 +76,11 @@ class ComicDetailViewController: UIViewController {
       guard let self = self else { return }
       switch state {
       case .failed:
-        self.imageView.image = nil
+        self.loadingImageView.stopLoading()
       case .loading:
-        self.imageView.image = nil
+        self.loadingImageView.startLoading()
       case .completed(let data):
-        self.imageView.image = UIImage(data: data)
+        self.loadingImageView.stopLoading(with: UIImage(data: data))
       }
     }
     disposeBag.append(disposable)

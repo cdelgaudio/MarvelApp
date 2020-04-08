@@ -7,7 +7,7 @@
 //
 
 import Foundation
-// TODO: Improve with block
+// TODO: Improve with barrier
 
 final class SafeArray<T> {
   private let queue = DispatchQueue(

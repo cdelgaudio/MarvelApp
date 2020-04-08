@@ -11,11 +11,12 @@ import XCTest
 
 class ComicDetailTests: XCTestCase {
 
-    func testFailure() {
+    func testNetworkFailure() {
       let comic = Comic(id: 1, title: "Test", description: nil, imagePath: "")
       let state: Binder<ComicDetailViewModel.State> = Binder(.failed)
       let network = MockNetworking(state: .failed)
-      let viewModel = ComicDetailViewModel(comic: comic, state: state, network: network)
+      let cache = MockCache(state: .empty)
+      let viewModel = ComicDetailViewModel(comic: comic, state: state, network: network, cache: cache)
       viewModel.start()
       
       switch state.value {
@@ -26,11 +27,12 @@ class ComicDetailTests: XCTestCase {
       }
     }
 
-  func testLoading() {
+  func testNetworkLoading() {
     let comic = Comic(id: 1, title: "Test", description: nil, imagePath: "")
     let state: Binder<ComicDetailViewModel.State> = Binder(.failed)
     let network = MockNetworking(state: .loading)
-    let viewModel = ComicDetailViewModel(comic: comic, state: state, network: network)
+    let cache = MockCache(state: .empty)
+    let viewModel = ComicDetailViewModel(comic: comic, state: state, network: network, cache: cache)
     viewModel.start()
     
     switch state.value {
@@ -41,15 +43,48 @@ class ComicDetailTests: XCTestCase {
     }
   }
 
-  func testSuccess() {
+  func testNetworkSuccess() {
     let comic = Comic(id: 1, title: "Test", description: nil, imagePath: "")
     let state: Binder<ComicDetailViewModel.State> = Binder(.failed)
     let network = MockNetworking(state: .completed(response: Data()))
-    let viewModel = ComicDetailViewModel(comic: comic, state: state, network: network)
+    let cache = MockCache(state: .empty)
+    let viewModel = ComicDetailViewModel(comic: comic, state: state, network: network, cache: cache)
     viewModel.start()
     
     switch state.value {
     case .completed:
+      XCTAssert(true)
+    default:
+      XCTAssert(false, "ComicListTests loading not caught")
+    }
+  }
+  
+  func testCacheSuccess() {
+    let comic = Comic(id: 1, title: "Test", description: nil, imagePath: "")
+    let state: Binder<ComicDetailViewModel.State> = Binder(.failed)
+    let network = MockNetworking(state: .failed)
+    let cache = MockCache(state: .filled(data: Data()))
+    let viewModel = ComicDetailViewModel(comic: comic, state: state, network: network, cache: cache)
+    viewModel.start()
+    
+    switch state.value {
+    case .completed:
+      XCTAssert(true)
+    default:
+      XCTAssert(false, "ComicListTests loading not caught")
+    }
+  }
+  
+  func testCacheFailure() {
+    let comic = Comic(id: 1, title: "Test", description: nil, imagePath: "")
+    let state: Binder<ComicDetailViewModel.State> = Binder(.failed)
+    let network = MockNetworking(state: .failed)
+    let cache = MockCache(state: .empty)
+    let viewModel = ComicDetailViewModel(comic: comic, state: state, network: network, cache: cache)
+    viewModel.start()
+    
+    switch state.value {
+    case .failed:
       XCTAssert(true)
     default:
       XCTAssert(false, "ComicListTests loading not caught")

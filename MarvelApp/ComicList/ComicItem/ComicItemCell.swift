@@ -14,7 +14,7 @@ final class ComicItemCell: UICollectionViewCell {
   
   private let titleLabel = UILabel()
   
-  private let imageView = UIImageView()
+  private let loadingImageView = LoadingImageView(frame: .zero)
   
   private var viewModel: ComicItemViewModel?
   
@@ -51,16 +51,11 @@ final class ComicItemCell: UICollectionViewCell {
       guard let self = self else { return }
       switch result {
       case .failed:
-        // TODO: Asset missing image
-        self.imageView.backgroundColor = .red
-        self.imageView.image = nil
+        self.loadingImageView.stopLoading()
       case .loading:
-        // TODO: ActivityIndicator
-        self.imageView.backgroundColor = .lightGray
-        self.imageView.image = nil
+        self.loadingImageView.startLoading()
       case .completed(let data):
-        self.imageView.backgroundColor = .clear
-        self.imageView.image = UIImage(data: data)
+        self.loadingImageView.stopLoading(with: UIImage(data: data))
       }
     }
     disposeBag.append(disposable)
@@ -74,10 +69,8 @@ final class ComicItemCell: UICollectionViewCell {
   }
   
   private func makeImageView() {
-    imageView.backgroundColor = .lightGray
-    imageView.contentMode = .scaleAspectFit
-    contentView.addSubview(imageView)
-    imageView.autoPinToSuperview()
+    contentView.addSubview(loadingImageView)
+    loadingImageView.autoPinToSuperview()
   }
   
   private func makeTitleLabel() {

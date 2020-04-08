@@ -13,7 +13,7 @@ final class ComicItemViewModel {
   let title: String
   
   enum State {
-    case failed, loading, completed(imageData: Data)
+    case failed, loading, completed(data: Data)
   }
   
   let imageState: ImmutableBinder<State>
@@ -24,9 +24,12 @@ final class ComicItemViewModel {
     
   private let network: Networking
   
-  init(comic: Comic, network: Networking) {
+  private let cache: Caching
+  
+  init(comic: Comic, network: Networking, cache: Caching) {
     self.comic = comic
     self.network = network
+    self.cache = cache
     title = comic.title
     _imageState = Binder(.failed)
     imageState = ImmutableBinder(binder: _imageState)
@@ -34,12 +37,21 @@ final class ComicItemViewModel {
   
   func start() {
     guard case .failed = _imageState.value else { return }
+    if let data = cache.getImage(for: comic.imagePath) {
+      _imageState.value = .completed(data: data)
+    } else {
+      downloadImage(path: comic.imagePath)
+    }
+  }
+  
+  private func downloadImage(path: String) {
     _imageState.value = .loading
-    network.getImage(path: comic.imagePath) { [weak self] result in
+    network.getImage(path: path) { [weak self] result in
       guard let self = self else { return }
       switch result {
       case .success(let data):
-        self._imageState.value = .completed(imageData: data)
+        self.cache.setImage(image: data, path: path)
+        self._imageState.value = .completed(data: data)
       case .failure:
         self._imageState.value = .failed
       }

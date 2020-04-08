@@ -33,7 +33,7 @@ protocol Networking: AnyObject {
 
 final class NetworkManager {
   
-  private let session = URLSession(configuration: .default)
+  private let session = URLSession(configuration: .ephemeral)
   
   @discardableResult
   private func get<D: Decodable>(

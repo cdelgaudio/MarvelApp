@@ -20,12 +20,15 @@ final class ComicListViewModel {
   
   private let network: Networking
   
+  private let cache: Caching
+  
   private let state: Binder<State>
   
   private weak var coordinator: ComicListCoordinating?
   
-  init(state: Binder<State>, coordinator: ComicListCoordinating?, network: Networking) {
+  init(state: Binder<State>, coordinator: ComicListCoordinating?, network: Networking, cache: Caching) {
     self.network = network
+    self.cache = cache
     self.state = state
     self.coordinator = coordinator
   }
@@ -37,7 +40,7 @@ final class ComicListViewModel {
       switch result {
       case .success(let response):
         let comicList = ComicWorker.format(response: response).map{
-          ComicItemViewModel(comic: $0, network: self.network)
+          ComicItemViewModel(comic: $0, network: self.network, cache: self.cache)
         }
         self.state.value = .completed(comicList: comicList)
       case .failure(let error):

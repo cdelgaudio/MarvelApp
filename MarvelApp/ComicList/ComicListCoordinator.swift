@@ -12,12 +12,16 @@ final class ComicListCoordinator: Coordinator {
   
   private let network = NetworkManager()
   
+  private let cache = CacheManager()
+  
   override func start() {
     let state: Binder<ComicListViewModel.State>  = Binder(.failed(message: ""))
     let viewModel = ComicListViewModel(
       state: state,
       coordinator: self,
-      network: network)
+      network: network,
+      cache: cache
+    )
     let viewController = ComicListViewController(
       viewModel: viewModel,
       state: ImmutableBinder(binder: state)
@@ -28,6 +32,6 @@ final class ComicListCoordinator: Coordinator {
 
 extension ComicListCoordinator: ComicListCoordinating {
   func routeToDetails(comic: Comic) {
-    child = ComicDetailCoordinator(navigation: navigation, comic: comic, network: network)
+    child = ComicDetailCoordinator(navigation: navigation, comic: comic, network: network, cache: cache)
   }
 }

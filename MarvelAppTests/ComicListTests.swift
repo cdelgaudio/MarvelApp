@@ -11,10 +11,11 @@ import XCTest
 
 class ComicListTests: XCTestCase {
 
-    func testFailure() {
+    func testNetworkFailure() {
       let state: Binder<ComicListViewModel.State> = Binder(.failed(message: ""))
       let network = MockNetworking(state: .failed)
-      let viewModel = ComicListViewModel(state: state, coordinator: nil, network: network)
+      let cache = MockCache(state: .empty)
+      let viewModel = ComicListViewModel(state: state, coordinator: nil, network: network, cache: cache)
       viewModel.start()
       
       switch state.value {
@@ -25,10 +26,11 @@ class ComicListTests: XCTestCase {
       }
     }
 
-  func testLoading() {
+  func testNetworkLoading() {
     let state: Binder<ComicListViewModel.State> = Binder(.failed(message: ""))
     let network = MockNetworking(state: .loading)
-    let viewModel = ComicListViewModel(state: state, coordinator: nil, network: network)
+    let cache = MockCache(state: .empty)
+    let viewModel = ComicListViewModel(state: state, coordinator: nil, network: network, cache: cache)
     viewModel.start()
     
     switch state.value {
@@ -39,7 +41,7 @@ class ComicListTests: XCTestCase {
     }
   }
   
-  func testSuccessEmpty() {
+  func testNetworkSuccessEmpty() {
     let response = ComicListResponse(
       code: 1,
       status: "OK",
@@ -47,7 +49,8 @@ class ComicListTests: XCTestCase {
     )
     let state: Binder<ComicListViewModel.State> = Binder(.failed(message: ""))
     let network = MockNetworking(state: .completed(response: response))
-    let viewModel = ComicListViewModel(state: state, coordinator: nil, network: network)
+    let cache = MockCache(state: .empty)
+    let viewModel = ComicListViewModel(state: state, coordinator: nil, network: network, cache: cache)
     viewModel.start()
     
     switch state.value {
@@ -58,7 +61,7 @@ class ComicListTests: XCTestCase {
     }
   }
   
-  func testSuccess() {
+  func testNetworkSuccess() {
     let response = ComicListResponse(
       code: 1,
       status: "OK",
@@ -66,7 +69,8 @@ class ComicListTests: XCTestCase {
     )
     let state: Binder<ComicListViewModel.State> = Binder(.failed(message: ""))
     let network = MockNetworking(state: .completed(response: response))
-    let viewModel = ComicListViewModel(state: state, coordinator: nil, network: network)
+    let cache = MockCache(state: .empty)
+    let viewModel = ComicListViewModel(state: state, coordinator: nil, network: network, cache: cache)
     viewModel.start()
     
     switch state.value {
@@ -87,7 +91,8 @@ class ComicListTests: XCTestCase {
     let navigation = UINavigationController()
     let coordinator = ComicListCoordinator(navigation: navigation)
     let network = MockNetworking(state: .completed(response: response))
-    let viewModel = ComicListViewModel(state: state, coordinator: coordinator, network: network)
+    let cache = MockCache(state: .empty)
+    let viewModel = ComicListViewModel(state: state, coordinator: coordinator, network: network, cache: cache)
     viewModel.start()
     let childrenCount = navigation.children.count
     viewModel.goToDetails(index: 0)
