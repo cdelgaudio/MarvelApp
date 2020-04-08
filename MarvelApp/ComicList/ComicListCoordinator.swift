@@ -11,7 +11,7 @@ import Foundation
 final class ComicListCoordinator: Coordinator {
   
   override func start() {
-    let viewModel = ComicListViewModel(networking: NetworkManager())
+    let viewModel = ComicListViewModel(network: NetworkManager())
     let viewController = ComicListViewController(viewModel: viewModel)
     navigation.pushViewController(viewController, animated: false)
   }

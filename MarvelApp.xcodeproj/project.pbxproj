@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB49939B243D12E70074C68B /* ComicListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB499399243D12D90074C68B /* ComicListTests.swift */; };
+		DB49939D243D18750074C68B /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB49939C243D18750074C68B /* NetworkRequest.swift */; };
+		DB49939F243D23D30074C68B /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB49939E243D23D30074C68B /* String+MD5.swift */; };
+		DB4993A1243D285E0074C68B /* ComicListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4993A0243D285E0074C68B /* ComicListResponse.swift */; };
+		DB4993A3243D2E2C0074C68B /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4993A2243D2E2C0074C68B /* ErrorResponse.swift */; };
 		DB4D0BA0243CF4B700E68882 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D0B9F243CF4B700E68882 /* AppDelegate.swift */; };
 		DB4D0BA2243CF4B700E68882 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D0BA1243CF4B700E68882 /* SceneDelegate.swift */; };
 		DB4D0BA4243CF4B700E68882 /* ComicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D0BA3243CF4B700E68882 /* ComicListViewController.swift */; };
@@ -41,6 +46,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB499399243D12D90074C68B /* ComicListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicListTests.swift; sourceTree = "<group>"; };
+		DB49939C243D18750074C68B /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		DB49939E243D23D30074C68B /* String+MD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
+		DB4993A0243D285E0074C68B /* ComicListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicListResponse.swift; sourceTree = "<group>"; };
+		DB4993A2243D2E2C0074C68B /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		DB4D0B9C243CF4B700E68882 /* MarvelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB4D0B9F243CF4B700E68882 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB4D0BA1243CF4B700E68882 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB4993A4243D2E340074C68B /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				DB4993A0243D285E0074C68B /* ComicListResponse.swift */,
+				DB4993A2243D2E2C0074C68B /* ErrorResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
 		DB4D0B93243CF4B700E68882 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				DB4D0BB6243CF4BA00E68882 /* MarvelAppTests.swift */,
+				DB499399243D12D90074C68B /* ComicListTests.swift */,
 				DB4D0BB8243CF4BA00E68882 /* Info.plist */,
 			);
 			path = MarvelAppTests;
@@ -152,6 +172,7 @@
 		DB4D0BD0243CF76900E68882 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				DBD30F3D243D06DD00725BBF /* Extensions */,
 				DB4D0BD1243CF77600E68882 /* Coordinator.swift */,
 				DB4D0BD3243CF9E900E68882 /* RootCoordinator.swift */,
 			);
@@ -171,8 +192,9 @@
 		DB4D0BDA243D022400E68882 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				DBD30F3D243D06DD00725BBF /* Extensions */,
 				DB4D0BDB243D024700E68882 /* NetworkManager.swift */,
+				DB49939C243D18750074C68B /* NetworkRequest.swift */,
+				DB4993A4243D2E340074C68B /* Responses */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -182,6 +204,7 @@
 			children = (
 				DBD30F3E243D06ED00725BBF /* UIView+.swift */,
 				DBD30F40243D077700725BBF /* UICollectionView+.swift */,
+				DB49939E243D23D30074C68B /* String+MD5.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -319,13 +342,17 @@
 				DB4D0BD7243CFF0300E68882 /* ComicListCoordinator.swift in Sources */,
 				DB4D0BD9243CFF1000E68882 /* ComicListViewModel.swift in Sources */,
 				DB4D0BD2243CF77600E68882 /* Coordinator.swift in Sources */,
+				DB49939F243D23D30074C68B /* String+MD5.swift in Sources */,
 				DB4D0BA4243CF4B700E68882 /* ComicListViewController.swift in Sources */,
 				DBD30F41243D077700725BBF /* UICollectionView+.swift in Sources */,
 				DB4D0BDC243D024700E68882 /* NetworkManager.swift in Sources */,
 				DB4D0BD4243CF9E900E68882 /* RootCoordinator.swift in Sources */,
 				DBD30F3F243D06ED00725BBF /* UIView+.swift in Sources */,
+				DB4993A1243D285E0074C68B /* ComicListResponse.swift in Sources */,
+				DB49939D243D18750074C68B /* NetworkRequest.swift in Sources */,
 				DB4D0BA0243CF4B700E68882 /* AppDelegate.swift in Sources */,
 				DB4D0BA2243CF4B700E68882 /* SceneDelegate.swift in Sources */,
+				DB4993A3243D2E2C0074C68B /* ErrorResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB4D0BB7243CF4BA00E68882 /* MarvelAppTests.swift in Sources */,
+				DB49939B243D12E70074C68B /* ComicListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

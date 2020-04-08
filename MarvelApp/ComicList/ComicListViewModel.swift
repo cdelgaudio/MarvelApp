@@ -11,14 +11,16 @@ import Foundation
 
 final class ComicListViewModel {
   
-  private let networking: Networking
+  private let network: Networking
   
-  init(networking: Networking) {
-    self.networking = networking
+  init(network: Networking) {
+    self.network = network
   }
   
   func start() {
-    print("Start")
+    network.getMovies { response in
+      print(response)
+    }
   }
   
 }
