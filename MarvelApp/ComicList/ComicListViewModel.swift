@@ -8,6 +8,9 @@
 
 import Foundation
 
+protocol ComicListCoordinating: AnyObject {
+  func routeToDetails(comic: Comic)
+}
 
 final class ComicListViewModel {
   
@@ -19,9 +22,12 @@ final class ComicListViewModel {
   
   private let state: Binder<State>
   
-  init(network: Networking, state: Binder<State>) {
+  private weak var coordinator: ComicListCoordinating?
+  
+  init(state: Binder<State>, coordinator: ComicListCoordinating?, network: Networking) {
     self.network = network
     self.state = state
+    self.coordinator = coordinator
   }
   
   func start() {
@@ -30,20 +36,19 @@ final class ComicListViewModel {
       guard let self = self else { return }
       switch result {
       case .success(let response):
-        let comicList = ComicWorker.format(response: response).map{ ComicItemViewModel(comic: $0) }
-        
+        let comicList = ComicWorker.format(response: response).map{
+          ComicItemViewModel(comic: $0, network: self.network)
+        }
         self.state.value = .completed(comicList: comicList)
       case .failure(let error):
-        let message: String
-        switch error {
-        case .network(let description):
-          message = description
-        default:
-          message = error.localizedDescription
-        }
-        self.state.value = .failed(message: message)
+        self.state.value = .failed(message: error.message)
       }
     }
+  }
+  
+  func goToDetails(index: Int) {
+    guard case let .completed(comicList) = state.value else { return }
+    coordinator?.routeToDetails(comic: comicList[index].comic)
   }
   
 }

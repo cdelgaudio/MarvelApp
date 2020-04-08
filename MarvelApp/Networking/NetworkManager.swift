@@ -12,6 +12,15 @@ enum NetworkError: Error {
   case parsing(description: String)
   case network(description: String)
   case request
+  
+  var message: String {
+    switch self {
+    case .network(let description):
+      return description
+    default:
+      return localizedDescription
+    }
+  }
 }
 
 typealias NetworkResult<D: Decodable> = Result<D, NetworkError>
@@ -19,11 +28,12 @@ typealias NetworkResult<D: Decodable> = Result<D, NetworkError>
 
 protocol Networking: AnyObject {
   func getMovies(completion: @escaping (NetworkResult<ComicListResponse>) -> Void)
+  func getImage(path: String, completion: @escaping (NetworkResult<Data>) -> Void)
 }
 
 final class NetworkManager {
   
-  private let session = URLSession.shared
+  private let session = URLSession(configuration: .default)
   
   @discardableResult
   private func get<D: Decodable>(
@@ -39,9 +49,27 @@ final class NetworkManager {
     task.resume()
     return task
   }
+  
+  @discardableResult
+   private func download(
+     url: URL?,
+     completion: @escaping (NetworkResult<Data>) -> Void
+   ) -> URLSessionDownloadTask? {
+     guard let url = url else {
+       completion(.failure(.request))
+       return nil
+     }
+     
+     let task = session.downloadTask(with: url, completionHandler: completion)
+     task.resume()
+     return task
+   }
 }
 
 extension NetworkManager: Networking {
+  func getImage(path: String, completion: @escaping (NetworkResult<Data>) -> Void) {
+    download(url: URL(string: path), completion: completion)
+  }
   
   func getMovies(completion: @escaping (NetworkResult<ComicListResponse>) -> Void) {
     get(url: NetworkRequest.comics.url, completion: completion)

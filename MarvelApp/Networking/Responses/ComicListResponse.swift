@@ -22,6 +22,7 @@ struct ComicListResponse: Codable {
   struct Comic: Codable {
     let id: Int
     let title: String
+    let description: String?
     let issueNumber: Int
     let prices: [Price]
     let thumbnail: Thumbnail

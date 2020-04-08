@@ -11,23 +11,23 @@ import Foundation
 // To respect the deadline I handled just the Get requests
 enum NetworkRequest {
   case comics
-  case image(path: String)
   
   var url: URL? {
-    var urlComponents = URLComponents()
-    urlComponents.scheme = scheme
-    urlComponents.host = host
-    urlComponents.path = path
-    urlComponents.queryItems = params
-    return urlComponents.url
+    switch self {
+    case .comics:
+      var urlComponents = URLComponents()
+      urlComponents.scheme = scheme
+      urlComponents.host = host
+      urlComponents.path = path
+      urlComponents.queryItems = params
+      return urlComponents.url
+    }
   }
   
   private var scheme: String? {
     switch self {
     case .comics:
       return "http"
-    case .image:
-      return nil
     }
   }
   
@@ -35,8 +35,6 @@ enum NetworkRequest {
     switch self {
     case .comics:
       return "gateway.marvel.com"
-    case .image(let path):
-      return path
     }
   }
   
@@ -44,8 +42,6 @@ enum NetworkRequest {
     switch self {
     case .comics:
       return "/v1/public/comics"
-    case .image:
-      return ""
     }
   }
   
@@ -60,8 +56,6 @@ enum NetworkRequest {
         .init(name: "ts", value: ts),
         .init(name: "hash", value: hash)
       ]
-    case .image:
-      return nil
     }
   }
   

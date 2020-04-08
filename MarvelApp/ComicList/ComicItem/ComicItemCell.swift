@@ -46,24 +46,24 @@ final class ComicItemCell: UICollectionViewCell {
   // MARK: Bindings
   
   private func makeBindings() {
-//    guard let viewModel = viewModel else { return }
-//    let disposable = viewModel.state.bind(fire: true, on: .main) { [weak self] result in
-//      guard let self = self else { return }
-//      switch result {
-//      case .failed:
-//        // TODO: Asset missing image
-//        self.imageView.backgroundColor = .red
-//        self.imageView.image = nil
-//      case .loading:
-//        // TODO: ActivityIndicator
-//        self.imageView.backgroundColor = .lightGray
-//        self.imageView.image = nil
-//      case .completed:
-//        self.imageView.backgroundColor = .clear
-//        self.imageView.image = viewModel.image
-//      }
-//    }
-//    disposeBag.append(disposable)
+    guard let viewModel = viewModel else { return }
+    let disposable = viewModel.imageState.bind(fire: true, on: .main) { [weak self] result in
+      guard let self = self else { return }
+      switch result {
+      case .failed:
+        // TODO: Asset missing image
+        self.imageView.backgroundColor = .red
+        self.imageView.image = nil
+      case .loading:
+        // TODO: ActivityIndicator
+        self.imageView.backgroundColor = .lightGray
+        self.imageView.image = nil
+      case .completed(let data):
+        self.imageView.backgroundColor = .clear
+        self.imageView.image = UIImage(data: data)
+      }
+    }
+    disposeBag.append(disposable)
   }
   
   // MARK: View

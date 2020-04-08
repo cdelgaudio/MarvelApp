@@ -13,14 +13,15 @@ import Foundation
 struct Comic {
   let id: Int
   let title: String
+  let description: String?
   let imagePath: String
 }
 
 enum ComicWorker {
   static func format(response: ComicListResponse) -> [Comic] {
     response.data.results.map{
-      let imagePath = $0.thumbnail.path + ($0.thumbnail.thumbnailExtension ?? "")
-      return Comic(id: $0.id, title: $0.title, imagePath: imagePath)
+      let imagePath = $0.thumbnail.path + ($0.thumbnail.thumbnailExtension ?? ".jpg")
+      return Comic(id: $0.id, title: $0.title, description: $0.description, imagePath: imagePath)
     }
   }
 }

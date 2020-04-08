@@ -10,13 +10,24 @@ import Foundation
 
 final class ComicListCoordinator: Coordinator {
   
+  private let network = NetworkManager()
+  
   override func start() {
     let state: Binder<ComicListViewModel.State>  = Binder(.failed(message: ""))
-    let viewModel = ComicListViewModel(network: NetworkManager(), state: state)
+    let viewModel = ComicListViewModel(
+      state: state,
+      coordinator: self,
+      network: network)
     let viewController = ComicListViewController(
       viewModel: viewModel,
       state: ImmutableBinder(binder: state)
     )
     navigation.pushViewController(viewController, animated: false)
+  }
+}
+
+extension ComicListCoordinator: ComicListCoordinating {
+  func routeToDetails(comic: Comic) {
+    child = ComicDetailCoordinator(navigation: navigation, comic: comic, network: network)
   }
 }

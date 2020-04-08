@@ -135,7 +135,7 @@ extension ComicListViewController: UICollectionViewDelegate {
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
   ) {
-    viewModel
+    viewModel.goToDetails(index: indexPath.row)
   }
 }
 

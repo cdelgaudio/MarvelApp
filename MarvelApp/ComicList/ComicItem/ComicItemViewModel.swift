@@ -12,17 +12,37 @@ final class ComicItemViewModel {
   
   let title: String
   
-  private let comic: Comic
+  enum State {
+    case failed, loading, completed(imageData: Data)
+  }
   
+  let imageState: ImmutableBinder<State>
+  
+  let comic: Comic
+  
+  private let _imageState: Binder<State>
+    
   private let network: Networking
   
   init(comic: Comic, network: Networking) {
     self.comic = comic
     self.network = network
     title = comic.title
+    _imageState = Binder(.failed)
+    imageState = ImmutableBinder(binder: _imageState)
   }
   
   func start() {
-    network
+    guard case .failed = _imageState.value else { return }
+    _imageState.value = .loading
+    network.getImage(path: comic.imagePath) { [weak self] result in
+      guard let self = self else { return }
+      switch result {
+      case .success(let data):
+        self._imageState.value = .completed(imageData: data)
+      case .failure:
+        self._imageState.value = .failed
+      }
+    }
   }
 }
